@@ -2,6 +2,7 @@
 
 <ul>
   <li>Levensthein based alghoritms - Used for scraping<br>Includes: </li>
+  <br>
   <ul>
     <li>Hamming based distance (counts diffrentiating characters)</li>
     <li>Levensthein based distance (Count required actions needed between 2 sentences using deletion/insertion/permutation)</li>
