@@ -12,5 +12,7 @@
   <li>Downtown maffia code injector - Scrapes & Injects friend codes over ADB protocol</li>
   <br>
   <li>Wifi pass dumper - Dumps current wifi password using DOS process</li>
+  <br>
+  <li>GitCurl - Get github API data through PHP</li>
  </ul>
    
