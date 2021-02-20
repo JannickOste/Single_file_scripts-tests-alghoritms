@@ -11,7 +11,7 @@ class Curl
             "Accept: $content_type",
             "Content-Type: $content_type",
             "User-Agent: Mozilla/5.0 (Windows NT 6.2; WOW64; rv:17.0) Gecko/20100101 Firefox/17.0",
-            "Authentication: 92540d8c662cc21c4bc70cd47bdc9505bf9eda96"
+            "Authentication: YOUR_AUTH_TOKEN"
         ]);
 
         $out = curl_exec($ch);
