@@ -32,7 +32,7 @@ class GitCurl extends Curl
         $this->_owner = $_owner;
     }
 
-    private function Sanitize(array $arr, array $matchingFields) : array  // Dirty fix but it works for now
+    private function Sanitize(array $arr, array $matchingFields) : array  // Dirty fix but it works for now, last touched php 4-5 years ago
     {
         $out = [];
         foreach($arr as $set => $values)
