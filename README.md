@@ -14,5 +14,7 @@
   <li>Wifi pass dumper - Dumps current wifi password using DOS process</li>
   <br>
   <li>GitCurl - Get github API data through PHP</li>
+  <br>
+  <li>Lazy Linux mint setup - Auto setup my most used packages on linux.</li>
  </ul>
    
