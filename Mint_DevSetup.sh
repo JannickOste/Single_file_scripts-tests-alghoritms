@@ -5,6 +5,7 @@ echo '##########################################################################
 echo '# Enter password to start installation (required for install permisions) #'
 echo '#                                                                        #'
 echo '# Installation includes:                                                 #'
+echo '# -> Git (Version control)                                               #'
 echo '# -> Apache (HTTP server)                                                #'
 echo '# -> PHP + (Apache module)                                               #'
 echo '# -> Python / Python3 (interpreters)                                     #'
