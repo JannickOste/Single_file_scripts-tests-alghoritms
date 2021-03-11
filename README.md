@@ -15,6 +15,6 @@
   <br>
   <li>GitCurl - Get github API data through PHP</li>
   <br>
-  <li>Lazy Linux mint setup - Auto setup my most used packages on linux.</li>
+  <li>Lazy Linux mint setup - Auto setup my most used packages on linux. (Apache/PHP/JDK/Python/Python3/snapd/GIMP/Eclipse/Pycharm)</li>
  </ul>
    
