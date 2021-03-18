@@ -1,5 +1,3 @@
-import sys
-
 binarySet = bytearray()
 # Creating a bytearray
 for i in ["hello", "you", "smello"]:
