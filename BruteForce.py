@@ -25,12 +25,15 @@ class BruteForcer:
         print("Starting bruteforce attempt at:", start_time)
         while not self.is_found:
             current_password_length += 1
-            self.__generateKey(0, [self.character_table[0] for _ in range(0, current_password_length)], current_password_length, current_password_length - 1)
+            self.__generateKey(0, [self.character_table[0] for _ in range(0, current_password_length)],
+                               current_password_length, current_password_length - 1)
 
-        print("Password found in", datetime.now()-start_time, "\nPassword = ", self.output)
+        print("\n".join(["Password: {}".format(self.output),
+                         "Password found in: {}".format(datetime.now() - start_time),
+                         "Computed values: {}".format(self.computed_values)]))
 
     def __generateKey(self, position: int, key_characters: list, password_length: int, last_index: int):
-        next_position = position+1
+        next_position = position + 1
         for i in range(0, len(self.character_table)):
             key_characters[position] = self.character_table[i]
 
@@ -48,8 +51,6 @@ class BruteForcer:
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    BruteForcer("p123").start()
-    BruteForcer("poss").start()
-    BruteForcer("pess").start()
+    BruteForcer("a123").start()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
