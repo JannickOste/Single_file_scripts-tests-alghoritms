@@ -6,64 +6,30 @@ using System.Reflection;
 namespace SubclassLoader
 {
     #region ExampleClasses
-    class Parent 
-    {
-        public virtual string Run() => "Default run";
-        
-    }
-    class ChildA : Parent 
-    {
-        public override string Run() => "Muha i'm the first child";
-    }
-    class ChildB : Parent 
-    {
-        public override string Run() => "Mahw i was second";
-    }
-    class ChildC : Parent 
-    {
-        public override string Run() => "Well last but not least";
-    }
+    class Parent           { public virtual string Run()  => "Default run"; }
+    class ChildA : Parent  { public override string Run() => "Muha i'm the first child"; }
+    class ChildB : Parent  { public override string Run() => "Mahw i was second"; }
+    class ChildC : Parent  { public override string Run() => "Well last but not least"; }
     #endregion
 
     #region Main
     class Program
     {
-        // Fetch sub instances as enumerator
-        static IEnumerable<T> GetSubclassInstances<T>()
-        {
-            foreach (System.Type subType in Assembly.GetExecutingAssembly()
-                                                    .GetTypes()
-                                                    .Where(type => type.IsSubclassOf(typeof(Parent))))
-                yield return (T)Activator.CreateInstance(subType);
-        }
-        
+        static IEnumerable<System.Type> GetSubclassTypes<T>() => Assembly.GetExecutingAssembly()
+                                                                            .GetTypes()
+                                                                            .Where(type => type.IsSubclassOf(typeof(T)))
+                                                                            .AsEnumerable<System.Type>();
+
+        static IEnumerable<T> GetSubclassInstances<T>() => GetSubclassTypes<T>()
+                                                            .Select(t => (T)Activator.CreateInstance(t))
+                                                            .AsEnumerable<T>();
+
         static void Main(string[] args)
         {
-            /**
-             * Output:
-             * - ChildA
-             * - ChildB
-             * - ChildC
-             * 
-             * && foreach -> Run override output
-             */
-             // Load class types using assembly
-            List<System.Type> childTypes = Assembly.GetExecutingAssembly()
-                .GetTypes()
-                .Where(type => type.IsSubclassOf(typeof(Parent)))
-                .ToList();
-
-            childTypes.ForEach(type =>
-            {
-                Console.WriteLine($"Type: {type.FullName}");
-
-                // Create an instance based upon child type using Activator
-                object instance = Activator.CreateInstance(type);
-                if (instance != null) Console.WriteLine($"Run output: {((Parent)instance).Run()}"); // Cast object to parent class -> run overiden method.
-      
-                // Line Break.
-                Console.WriteLine(string.Join("", Enumerable.Repeat('-', Console.WindowWidth-1)));
-            });
+            foreach(Parent child in GetSubclassInstances<Parent>())
+                Console.WriteLine($"Subclass type: {child.GetType().Name}\n" +
+                                  $"Subclass run output: {child.Run()}\n" +
+                                  $"{string.Join("", Enumerable.Repeat('-', Console.WindowWidth - 1))}");
 
             
         }
