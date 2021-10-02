@@ -26,13 +26,13 @@
             foreach(MethodInfo callback in typeof(LogicGate).GetMethods(BindingFlags.Static | BindingFlags.Public)
                                                             .Where(i => i.GetCustomAttribute(typeof(GateAttribute), false) != null))
             {
-                int bool_characters = callback.GetParameters().Count(i => i.ParameterType == typeof(bool));
-                if(!(bool_characters >= 1 & bool_characters <= 2)) continue;
+                int bool_parameter_count = callback.GetParameters().Count(i => i.ParameterType == typeof(bool));
+                if(bool_parameter_count == 0 | bool_parameter_count > 2) continue;
 
-                Console.WriteLine($"Output for {callback.Name}");
-                if(callback.Name == "NOT")
+                Console.WriteLine($"[Output]: {callback.Name}");
+                Console.WriteLine(bool_parameter_count == 1 ? "A | Y" : "A | B | Y");
+                if(bool_parameter_count == 1)
                 {
-                    Console.WriteLine($"A | Y");
                     for(int i = 0; i < 2; i++)
                     {
                         bool y = (bool)callback.Invoke(obj: null, parameters: new object[]{i != 0});
@@ -41,7 +41,6 @@
                 }
                 else
                 {
-                    Console.WriteLine($"A | B | Y");
                     foreach((bool a, bool b) set in grid)
                     {
                         bool y = (bool)callback.Invoke(obj: null, parameters: new object[]{set.a, set.b});
